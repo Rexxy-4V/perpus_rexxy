@@ -12,11 +12,17 @@ class UserComponent extends Component
 {
     use WithPagination, WithoutUrlPagination;
     protected $paginationTheme ='bootstrap';
-    public $id, $nama, $email, $password;
+    public $id, $nama, $email, $password, $cari;
     public function render()
     {
         $layout['title'] = "Kelola User";
-        $data['user'] = User::paginate(10);
+        if ($this->cari != "") {
+            $data['user'] = User::where('nama', 'like', '%'.$this->cari. '%')
+            ->orWhere('email', 'like', '%'.$this->cari. '%')
+            ->paginate(10);
+        } else {
+            $data['user'] = User::paginate(10);
+        }
         return view('livewire.user-component', $data)->layoutData($layout);
     }
     public function store(){
@@ -64,6 +70,19 @@ class UserComponent extends Component
             ]);
         }
         session()->flash('success', 'Berhasil Diubah!');
+        $this->reset();
+    }
+
+    public function confirm($id)
+    {
+        $this->id = $id;
+    }
+
+    public function destroy(){
+        $user=User::find($this->id);
+        $user->delete();
+
+        session()->flash('success', 'Berhasil Di Hapus!');
         $this->reset();
     }
 }

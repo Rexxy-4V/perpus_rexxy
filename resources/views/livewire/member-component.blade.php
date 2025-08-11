@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            Kelola User
+            Kelola Member
         </div>
         <div class="card-body">
             @if (session()->has('success'))
@@ -16,18 +16,20 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">Ponsel</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Jenis</th>
                             <th>Proses</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($user as $data)
+                        @foreach ($member as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->nama }}</td>
+                                <td>{{ $data->alamat }}</td>
+                                <td>{{ $data->telepon }}</td>
                                 <td>{{ $data->email }}</td>
-                                <td>{{ $data->jenis }}</td>
                                 <td>
                                     <a href="#" wire:click="edit({{ $data->id }})" class="btn btn-sm btn-info"
                                         data-toggle="modal" data-target="#editPage">Ubah</a>
@@ -37,7 +39,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $user->links() }}
+                {{ $member->links() }}
             </div>
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage">Tambah</a>
         </div>
@@ -48,7 +50,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah User</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Member</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -65,51 +67,18 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ old('email') }}">
-                            @error('email')
+                            <label>Telepon</label>
+                            <input type="text" class="form-control" wire:model="telepon" value="{{ old('telepon') }}">
+                            @error('telepon')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Password</label>
-                            <input type="text" class="form-control" wire:model="password"
-                                value="{{ old('password') }}">
-                            @error('password')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click="store" class="btn btn-primary" data-dismiss="modal">Save
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    {{-- Edit  --}}
-    <div wire:ignore.self class="modal fade" id="editPage" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" wire:model="nama" value="{{ old('nama') }}">
-                            @error('nama')
+                            <label>Alamat</label>
+                            <textarea class="form-control" wire:model="alamat" cols="30" rows="10">{{ old('alamat') }}</textarea>
+                            @error('alamat')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
@@ -124,21 +93,11 @@
                                 </small>
                             @enderror
                         </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="text" class="form-control" wire:model="password"
-                                value="{{ old('password') }}">
-                            @error('password')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" wire:click="update" class="btn btn-primary" data-dismiss="modal">Save
+                    <button type="button" wire:click="store" class="btn btn-primary">Save
                     </button>
                 </div>
             </div>
