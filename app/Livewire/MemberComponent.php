@@ -48,4 +48,44 @@ class MemberComponent extends Component
         session()->flash('success', 'Berhasil Simpan!');
         return redirect()->route('member');
     }
+
+    public function edit($id)
+    {
+        $member = User::find($id);
+        $this->id = $member->id;
+        $this->nama = $member->nama;
+        $this->alamat = $member->alamat;
+        $this->telepon = $member->telepon;
+        $this->email = $member->email;
+    }
+
+    public function update()
+    {
+        $member = User::find($this->id);
+        $member->update([
+            'nama' => $this->nama,
+            'alamat' => $this->alamat,
+            'telepon' => $this->telepon,
+            'email' => $this->email,
+            'jenis' => 'member'
+        ]);
+
+        session()->flash('success', 'Behasil Ubah!');
+        return redirect()->route('member');
+    }
+
+    public function confirm($id)
+    {
+        $this->id = $id;
+    }
+
+    public function destroy()
+    {
+        $member = User::find($this->id);
+        $member->delete();
+
+        session()->flash('success', 'Berhasil Hapus!');
+        return redirect()->route('member');
+    }
+
 }

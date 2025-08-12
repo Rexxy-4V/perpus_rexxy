@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            Kelola Member
+            Kelola Buku
         </div>
         <div class="card-body">
             @if (session()->has('success'))
@@ -15,21 +15,23 @@
                     <thead>
                         <tr>
                             <th scope="col">No</th>
-                            <th scope="col">Nama</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Ponsel</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Judul</th>
+                            <th scope="col">Kategori</th>
+                            <th scope="col">Penulis</th>
+                            <th scope="col">Penerbit</th>
+                            <th scope="col">Tahun</th>
                             <th>Proses</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($member as $data)
+                        @foreach ($buku as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $data->nama }}</td>
-                                <td>{{ $data->alamat }}</td>
-                                <td>{{ $data->telepon }}</td>
-                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->judul }}</td>
+                                <td>{{ $data->kategori->nama }}</td>
+                                <td>{{ $data->penulis }}</td>
+                                <td>{{ $data->penerbit }}</td>
+                                <td>{{ $data->tahun }}</td>
                                 <td>
                                     <a href="#" wire:click="edit({{ $data->id }})" class="btn btn-sm btn-info"
                                         data-toggle="modal" data-target="#editPage">Ubah</a>
@@ -40,7 +42,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $member->links() }}
+                {{ $buku->links() }}
             </div>
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage">Tambah</a>
         </div>
@@ -51,7 +53,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -59,37 +61,68 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" wire:model="nama" value="{{ old('nama') }}">
-                            @error('nama')
+                            <label>Judul</label>
+                            <input type="text" class="form-control" wire:model="judul" value="{{ old('judul') }}">
+                            @error('judul')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Telepon</label>
-                            <input type="text" class="form-control" wire:model="telepon"
-                                value="{{ old('telepon') }}">
-                            @error('telepon')
+                            <label>Kategori</label>
+                            <select wire:model="kategori" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($category as $data)
+                                    <option value="{{$data->id}}">{{$data->nama}}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" wire:model="alamat" cols="30" rows="10">{{ old('alamat') }}</textarea>
-                            @error('alamat')
+                            <label>Penulis</label>
+                            <input type="text" class="form-control" wire:model="penulis" value="{{ old('penulis') }}">
+                            @error('penulis')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ old('email') }}">
-                            @error('email')
+                            <label>Penerbit</label>
+                            <input type="text" class="form-control" wire:model="penerbit" value="{{ old('penerbit') }}">
+                            @error('penerbit')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>ISBN</label>
+                            <input type="text" class="form-control" wire:model="isbn" value="{{ old('isbn') }}">
+                            @error('isbn')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah</label>
+                            <input type="text" class="form-control" wire:model="jumlah" value="{{ old('jumlah') }}">
+                            @error('jumlah')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Tahun</label>
+                            <input type="text" class="form-control" wire:model="tahun" value="{{ old('tahun') }}">
+                            @error('tahun')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
@@ -112,7 +145,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -120,38 +153,68 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" class="form-control" wire:model="nama" value="{{ old('nama') }}">
-                            @error('nama')
+                            <label>Judul</label>
+                            <input type="text" class="form-control" wire:model="judul" value="{{ old('judul') }}">
+                            @error('judul')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Telepon</label>
-                            <input type="text" class="form-control" wire:model="telepon"
-                                value="{{ old('telepon') }}">
-                            @error('telepon')
+                            <label>Kategori</label>
+                            <select wire:model="kategori" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($category as $data)
+                                    <option value="{{$data->id}}">{{$data->nama}}</option>
+                                @endforeach
+                            </select>
+                            @error('kategori')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" wire:model="alamat" cols="30" rows="10">{{ old('alamat') }}</textarea>
-                            @error('alamat')
+                            <label>Penulis</label>
+                            <input type="text" class="form-control" wire:model="penulis" value="{{ old('penulis') }}">
+                            @error('penulis')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" wire:model="email"
-                                value="{{ old('email') }}">
-                            @error('email')
+                            <label>Penerbit</label>
+                            <input type="text" class="form-control" wire:model="penerbit" value="{{ old('penerbit') }}">
+                            @error('penerbit')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>ISBN</label>
+                            <input type="text" class="form-control" wire:model="isbn" value="{{ old('isbn') }}">
+                            @error('isbn')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Jumlah</label>
+                            <input type="text" class="form-control" wire:model="jumlah" value="{{ old('jumlah') }}">
+                            @error('jumlah')
+                                <small class="form-text text-danger">
+                                    {{ $message }}
+                                </small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Tahun</label>
+                            <input type="text" class="form-control" wire:model="tahun" value="{{ old('tahun') }}">
+                            @error('tahun')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
@@ -173,7 +236,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

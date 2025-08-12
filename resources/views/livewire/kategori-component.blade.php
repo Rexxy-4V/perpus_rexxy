@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header">
-            Kelola Member
+            Kelola Kategori Buku
         </div>
         <div class="card-body">
             @if (session()->has('success'))
@@ -16,20 +16,14 @@
                         <tr>
                             <th scope="col">No</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Alamat</th>
-                            <th scope="col">Ponsel</th>
-                            <th scope="col">Email</th>
                             <th>Proses</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($member as $data)
+                        @foreach ($kategori as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $data->nama }}</td>
-                                <td>{{ $data->alamat }}</td>
-                                <td>{{ $data->telepon }}</td>
-                                <td>{{ $data->email }}</td>
                                 <td>
                                     <a href="#" wire:click="edit({{ $data->id }})" class="btn btn-sm btn-info"
                                         data-toggle="modal" data-target="#editPage">Ubah</a>
@@ -40,7 +34,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $member->links() }}
+                {{ $kategori->links() }}
             </div>
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#addPage">Tambah</a>
         </div>
@@ -51,7 +45,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -68,28 +62,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Telepon</label>
-                            <input type="text" class="form-control" wire:model="telepon"
-                                value="{{ old('telepon') }}">
-                            @error('telepon')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" wire:model="alamat" cols="30" rows="10">{{ old('alamat') }}</textarea>
-                            @error('alamat')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" wire:model="email" value="{{ old('email') }}">
-                            @error('email')
+                            <label>Deskripsi</label>
+                            <textarea class="form-control" wire:model="deskripsi" cols="30" rows="10">{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
@@ -112,7 +87,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -129,29 +104,9 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Telepon</label>
-                            <input type="text" class="form-control" wire:model="telepon"
-                                value="{{ old('telepon') }}">
-                            @error('telepon')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <textarea class="form-control" wire:model="alamat" cols="30" rows="10">{{ old('alamat') }}</textarea>
-                            @error('alamat')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="text" class="form-control" wire:model="email"
-                                value="{{ old('email') }}">
-                            @error('email')
+                            <label>Deskripsi</label>
+                            <textarea class="form-control" wire:model="deskripsi" cols="30" rows="10">{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
@@ -173,7 +128,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Member</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
