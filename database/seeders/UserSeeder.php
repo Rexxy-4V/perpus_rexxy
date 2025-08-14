@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'telepon' => '1122334455',
             'email' => 'admin@email.com',
             'password' => Hash::make('admin123'),
-            'jenis' => 'admin',
+            'role' => 'admin',
         ]);
     }
 }
