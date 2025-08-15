@@ -24,10 +24,10 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pinjam as $data)
+                        @foreach ( $pinjam as $data)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}</th>
-                                <td>{{ $data->buku->nama }}</td>
+                                <td>{{ $data->buku->judul }}</td>
                                 <td>{{ $data->user->nama }}</td>
                                 <td>{{ $data->tgl_pinjam }}</td>
                                 <td>{{ $data->tgl_kembali }}</td>
@@ -61,54 +61,28 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label>Judul</label>
-                            <input type="text" class="form-control" wire:model="judul" value="{{ old('judul') }}">
-                            @error('judul')
+                            <label>Judul Buku</label>
+                            <select wire:model="buku" class="form-control">
+                                <option value="">--Pilih Buku--</option>
+                                @foreach ($book as $buku)
+                                    <option value="{{ $buku->id }}">{{ $buku->judul }}</option>
+                                @endforeach
+                            </select>
+                            @error('buku')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Penulis</label>
-                            <input type="text" class="form-control" wire:model="penulis" value="{{ old('penulis') }}">
-                            @error('penulis')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Penerbit</label>
-                            <input type="text" class="form-control" wire:model="penerbit" value="{{ old('penerbit') }}">
-                            @error('penerbit')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>ISBN</label>
-                            <input type="text" class="form-control" wire:model="isbn" value="{{ old('isbn') }}">
-                            @error('isbn')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Jumlah</label>
-                            <input type="text" class="form-control" wire:model="jumlah" value="{{ old('jumlah') }}">
-                            @error('jumlah')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Tahun</label>
-                            <input type="text" class="form-control" wire:model="tahun" value="{{ old('tahun') }}">
-                            @error('tahun')
+                            <label>Member</label>
+                            <select wire:model="user" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($member as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('user')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>

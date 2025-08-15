@@ -18,9 +18,9 @@ class UserSeeder extends Seeder
             'nama' => 'admin',
             'alamat' => 'Jl. Dieng No. 123',
             'telepon' => '1122334455',
-            'email' => 'admin@email.com',
+            'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),
-            'role' => 'admin',
+            'jenis' => 'admin',
         ]);
     }
 }
