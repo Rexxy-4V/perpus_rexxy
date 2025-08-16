@@ -53,7 +53,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah Buku</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Pinjam Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -105,7 +105,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah Buku</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Pinjam Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -113,54 +113,28 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label>Judul</label>
-                            <input type="text" class="form-control" wire:model="judul" value="{{ old('judul') }}">
-                            @error('judul')
+                            <label>Judul Buku</label>
+                            <select wire:model="buku" class="form-control">
+                                <option value="">--Pilih Buku--</option>
+                                @foreach ($book as $buku)
+                                    <option value="{{ $buku->id }}">{{ $buku->judul }}</option>
+                                @endforeach
+                            </select>
+                            @error('buku')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label>Penulis</label>
-                            <input type="text" class="form-control" wire:model="penulis" value="{{ old('penulis') }}">
-                            @error('penulis')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Penerbit</label>
-                            <input type="text" class="form-control" wire:model="penerbit" value="{{ old('penerbit') }}">
-                            @error('penerbit')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>ISBN</label>
-                            <input type="text" class="form-control" wire:model="isbn" value="{{ old('isbn') }}">
-                            @error('isbn')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Jumlah</label>
-                            <input type="text" class="form-control" wire:model="jumlah" value="{{ old('jumlah') }}">
-                            @error('jumlah')
-                                <small class="form-text text-danger">
-                                    {{ $message }}
-                                </small>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                            <label>Tahun</label>
-                            <input type="text" class="form-control" wire:model="tahun" value="{{ old('tahun') }}">
-                            @error('tahun')
+                            <label>Member</label>
+                            <select wire:model="user" class="form-control">
+                                <option value="">--Pilih--</option>
+                                @foreach ($member as $data)
+                                    <option value="{{ $data->id }}">{{ $data->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('user')
                                 <small class="form-text text-danger">
                                     {{ $message }}
                                 </small>
@@ -182,7 +156,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Hapus Buku</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Pinjam Buku</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
