@@ -9,7 +9,6 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <input type="text" wire:model.live="cari" class="from-control w-50" placeholder="Cari...">
             <div class="table-responsive">
                 <table class="table">
                     <thead>
@@ -46,6 +45,42 @@
         </div>
     </div>
 
+    <div class="card">
+        <div class="card-header">
+            History Buku Kembali
+        </div>
+        <div class="card-body">
+            @if (session()->has('success'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">ID Pinjam</th>
+                            <th scope="col">Tanggal Kembali</th>
+                            <th scope="col">Denda</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ( $pengembalian as $data)
+                            <tr>
+                                <th scope="row">{{ $loop->iteration }}</th>
+                                <td>{{ $data->pinjam_id }}</td>
+                                <td>{{ $data->tgl_kembali }}</td>
+                                <td>{{ $data->denda }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                {{ $pengembalian->links() }}
+            </div>
+        </div>
+    </div>
+
     <div wire:ignore.self class="modal fade" id="pilih" tabindex="-1" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -57,12 +92,64 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row mb-3">
+                    <div class="row mb-4">
                         <div class="col-md-3">
-                            Judul Buku :
+                            Judul Buku
                         </div>
-                        <div class="col-md-9">
-                            {{ $judul }}
+                        <div class="col-md-8">
+                            :  {{ $judul }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            Member
+                        </div>
+                        <div class="col-md-8">
+                            :  {{ $member }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            Tanggal Kembali
+                        </div>
+                        <div class="col-md-8">
+                            :  {{ $tglkembali }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            Tanggal Hari ini
+                        </div>
+                        <div class="col-md-8">
+                            :  {{ date('Y-m-d') }}
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            Denda
+                        </div>
+                        <div class="col-md-8">
+                            :  @if ($this->status ==true)
+                            Ya
+                            @else
+                            Tidak
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            Lama Terlambat
+                        </div>
+                        <div class="col-md-8">
+                            :  {{ $lama }} Hari
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            Jumlah Denda
+                        </div>
+                        <div class="col-md-8">
+                            :  {{ $lama * 1000}}
                         </div>
                     </div>
                 </div>
