@@ -20,7 +20,7 @@ class LoginComponent extends Component
             'password' => 'required|min:6',
         ],[
             'email.required' => 'Email Tidak Boleh Kosong!',
-            'password.required' => 'Email Tidak Boleh Kosong!',
+            'password.required' => 'Password Tidak Boleh Kosong!',
             'password.min' => 'Psawword Minimal 6 Karakter!',
         ]);
 
