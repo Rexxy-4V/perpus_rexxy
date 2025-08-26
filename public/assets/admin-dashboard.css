@@ -18,9 +18,9 @@ body {
     padding: 15px;
 }
 
-.sidebar .nav-link.active {
+/* .sidebar .nav-link.active {
     background-color: #007bff;
-}
+} */
 
 .main-content {
     margin-left: 200px;
@@ -38,3 +38,4 @@ body {
 .card-header {
     font-weight: bold;
 }
+

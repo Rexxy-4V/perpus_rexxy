@@ -35,6 +35,10 @@
             margin-left: 0;
         }
 
+        .nav-item:hover {
+            background-color: #33A1E0;
+        }
+
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -70,7 +74,7 @@
                 @include('components.layouts.navigasi')
 
 
-                
+
                 {{ $slot }}
             </main>
         </div>
