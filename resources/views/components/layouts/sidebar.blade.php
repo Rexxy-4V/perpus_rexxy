@@ -10,37 +10,37 @@
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('member') }}">
                     <span data-feather="users"></span>
-                    Manage Members
+                    Kelola Anggota
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('buku') }}">
                     <span data-feather="book"></span>
-                    Manage Books
+                    Kelola Buku
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('pinjam') }}">
                     <span data-feather="file"></span>
-                    Manage Loans
+                    Kelola Pinjaman
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('kembali') }}">
                     <span data-feather="check-circle"></span>
-                    Manage Returns
+                    Kelola Pengembalian
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('kategori') }}">
                     <span data-feather="tag"></span>
-                    Manage Categories
+                    Kelola Kategori
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="{{ route('user') }}">
                     <span data-feather="user"></span>
-                    Manage Staff
+                    Kelola Staf
                 </a>
             </li>
         </ul>

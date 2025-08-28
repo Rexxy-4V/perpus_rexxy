@@ -3,7 +3,9 @@
     <h1 class="h2">Dashboard</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Profile</button>
+            <a href="{{ route('error') }}">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Profile</button>
+            </a>
         </div>
         <div class="btn-group">
             <a href="{{ route('logout') }}">

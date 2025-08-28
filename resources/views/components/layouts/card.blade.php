@@ -8,7 +8,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">Total: {{ $member }}</h5>
-                    <p class="card-text">Active Members</p>
+                    <p class="card-text">Anggota Aktif</p>
                 </div>
             </div>
         </div>
@@ -18,8 +18,8 @@
                     <span data-feather="book" class="mr-2"></span> Buku
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Total: {{ $buku}}</h5>
-                    <p class="card-text">Available Books</p>
+                    <h5 class="card-title">Total: {{ $buku }}</h5>
+                    <p class="card-text">Buku yang Tersedia</p>
                 </div>
             </div>
         </div>
@@ -29,8 +29,8 @@
                     <span data-feather="file-text" class="mr-2"></span> Pinjam Buku
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Total : {{ $pinjam}}</h5>
-                    <p class="card-text">Books on Loan</p>
+                    <h5 class="card-title">Total : {{ $pinjam }}</h5>
+                    <p class="card-text">Buku Pinjaman</p>
                 </div>
             </div>
         </div>
@@ -40,8 +40,8 @@
                     <span data-feather="clock" class="mr-2"></span> Kembali Buku
                 </div>
                 <div class="card-body">
-                    <h5 class="card-title">Total : {{ $kembali}}</h5>
-                    <p class="card-text">Overdue Books</p>
+                    <h5 class="card-title">Total : {{ $kembali }}</h5>
+                    <p class="card-text">Buku yang Sudah Jatuh Tempo</p>
                 </div>
             </div>
         </div>
